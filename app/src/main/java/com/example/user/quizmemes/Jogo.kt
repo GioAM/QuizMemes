@@ -19,13 +19,18 @@ class Jogo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogo)
-        perguntas.add(Pergunta("Qual dessas falas é a do Faustão?","Você não sabe  nem eu","Acertou Miseravi","Tá pegando fogo", R.id.botao3.toString(),  resources.getIdentifier("faustao","mipmap",packageName)))
+        perguntas.add(Pergunta("Qual dessas falas é a do Faustão?","Você não sabe  nem eu","Acertou Miseravi","Tá pegando fogo bicho", R.id.botao3.toString(),  resources.getIdentifier("faustao","mipmap",packageName)))
         perguntas.add(Pergunta("Qual é a A?","A","B","C",R.id.botao1.toString(),0))
         perguntas.add(Pergunta("Qual é a B?","A","B","C",R.id.botao2.toString(), resources.getIdentifier("faustao","mipmap",packageName)))
         montarPergunta()
     }
     fun jogar(view : View){
-        if(view.id.toString().equals(perguntas[perguntaAtual].alternativaCorreta) ){
+        if(view.id.toString().equals(perguntas[perguntaAtual].alternativaCorreta)){
+            if(perguntaAtual + 1  == perguntas.size){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
             perguntaAtual ++
         }else{
             vidas --
@@ -34,18 +39,15 @@ class Jogo : AppCompatActivity() {
             }else if(vidas == 1){
                 findViewById<ImageView>(R.id.hearth2).setImageResource(resources.getIdentifier(" ","mipmap",packageName))
             }else if(vidas == 0){
-                findViewById<ImageView>(R.id.hearth1).setImageResource(resources.getIdentifier(" ","mipmap",packageName))
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
             }
-        }
-
-        if(vidas == 0){
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
         }
         montarPergunta()
     }
     fun montarPergunta(){
+        findViewById<TextView>(R.id.numeroDaPergunta).setText((perguntaAtual + 1).toString())
         findViewById<Button>(R.id.botao1).setText(perguntas[perguntaAtual].alternativaA)
         findViewById<Button>(R.id.botao2).setText(perguntas[perguntaAtual].alternativaB)
         findViewById<Button>(R.id.botao3).setText(perguntas[perguntaAtual].alternativaC)
