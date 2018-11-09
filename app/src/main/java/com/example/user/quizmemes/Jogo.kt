@@ -16,9 +16,16 @@ class Jogo : AppCompatActivity() {
 
     var vidas:Int = 3
 
+
+    var nome = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        perguntaAtual=0
         setContentView(R.layout.activity_jogo)
+        var pagInicial = getIntent()
+        nome = pagInicial.getStringExtra("nome")
         perguntas.add(Pergunta("Qual dessas falas é a do Faustão?","Você não sabe  nem eu","Acertou Miseravi","Tá pegando fogo bicho", R.id.botao3.toString(),  resources.getIdentifier("faustao","mipmap",packageName)))
         perguntas.add(Pergunta("Qual é a A?","A","B","C",R.id.botao1.toString(),0))
         perguntas.add(Pergunta("Qual é a B?","A","B","C",R.id.botao2.toString(), resources.getIdentifier("faustao","mipmap",packageName)))
@@ -26,10 +33,12 @@ class Jogo : AppCompatActivity() {
     }
     fun jogar(view : View){
         if(view.id.toString().equals(perguntas[perguntaAtual].alternativaCorreta)){
-            if(perguntaAtual + 1  == perguntas.size){
-                val intent = Intent(this, MainActivity::class.java)
+            if(perguntaAtual+1 == perguntas.size){
+                val intent = Intent(this, Final::class.java)
                 startActivity(intent)
                 finish()
+                return
+
             }
             perguntaAtual ++
         }else{
@@ -39,7 +48,7 @@ class Jogo : AppCompatActivity() {
             }else if(vidas == 1){
                 findViewById<ImageView>(R.id.hearth2).setImageResource(resources.getIdentifier(" ","mipmap",packageName))
             }else if(vidas == 0){
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, Final::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -47,7 +56,7 @@ class Jogo : AppCompatActivity() {
         montarPergunta()
     }
     fun montarPergunta(){
-        findViewById<TextView>(R.id.numeroDaPergunta).setText((perguntaAtual + 1).toString())
+        findViewById<TextView>(R.id.numeroDaPergunta).setText(nome)
         findViewById<Button>(R.id.botao1).setText(perguntas[perguntaAtual].alternativaA)
         findViewById<Button>(R.id.botao2).setText(perguntas[perguntaAtual].alternativaB)
         findViewById<Button>(R.id.botao3).setText(perguntas[perguntaAtual].alternativaC)
