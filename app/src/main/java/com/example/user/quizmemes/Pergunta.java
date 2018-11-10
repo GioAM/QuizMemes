@@ -10,15 +10,17 @@ public class Pergunta {
     private String alternativaC;
     private String alternativaCorreta;
     private int imagem;
+    private boolean isGif;
 
-
-    public Pergunta(String descricao, String alternativaA, String alternativaB, String alternativaC, String alternativaCorreta, int imagem){
+    public Pergunta(String descricao, String alternativaA, String alternativaB, String alternativaC, String alternativaCorreta, int imagem, boolean isGif){
         this.alternativaA = alternativaA;
         this.alternativaB = alternativaB;
         this.alternativaC = alternativaC;
         this.alternativaCorreta = alternativaCorreta;
         this.descricao = descricao;
+
         this.imagem =  imagem;
+        this.isGif =  isGif;
     }
 
     public int getImagem() {
@@ -68,4 +70,9 @@ public class Pergunta {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public boolean isGif() { return isGif; }
+
+    public void setGif(boolean gif) { isGif = gif; }
+
 }
