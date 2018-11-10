@@ -21,7 +21,7 @@ class Jogo : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        supportActionBar?.hide()
         perguntaAtual=0
         setContentView(R.layout.activity_jogo)
         var pagInicial = getIntent()
@@ -32,13 +32,13 @@ class Jogo : AppCompatActivity() {
         montarPergunta()
     }
     fun jogar(view : View){
+        val telaFinal = Intent(this, TelaFinal::class.java)
         if(view.id.toString().equals(perguntas[perguntaAtual].alternativaCorreta)){
             if(perguntaAtual+1 == perguntas.size){
-                val intent = Intent(this, Final::class.java)
-                startActivity(intent)
+                telaFinal.putExtra("resultado","ganhou")
+                startActivity(telaFinal)
                 finish()
                 return
-
             }
             perguntaAtual ++
         }else{
@@ -48,15 +48,15 @@ class Jogo : AppCompatActivity() {
             }else if(vidas == 1){
                 findViewById<ImageView>(R.id.hearth2).setImageResource(resources.getIdentifier(" ","mipmap",packageName))
             }else if(vidas == 0){
-                val intent = Intent(this, Final::class.java)
-                startActivity(intent)
+                telaFinal.putExtra("resultado","perdeu")
+                startActivity(telaFinal)
                 finish()
             }
         }
         montarPergunta()
     }
     fun montarPergunta(){
-        findViewById<TextView>(R.id.numeroDaPergunta).setText(nome)
+        findViewById<TextView>(R.id.numeroDaPergunta).setText((perguntaAtual+1).toString())
         findViewById<Button>(R.id.botao1).setText(perguntas[perguntaAtual].alternativaA)
         findViewById<Button>(R.id.botao2).setText(perguntas[perguntaAtual].alternativaB)
         findViewById<Button>(R.id.botao3).setText(perguntas[perguntaAtual].alternativaC)
