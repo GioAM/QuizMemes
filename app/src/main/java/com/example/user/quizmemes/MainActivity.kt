@@ -28,4 +28,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+    fun ranking(view : View) {
+        val intent = Intent(this, Ranking::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

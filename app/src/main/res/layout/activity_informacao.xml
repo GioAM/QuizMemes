@@ -37,7 +37,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="O jogo Quiz Memes, consiste em perguntas, onde cada pergunta contém 4 alternativas e apenas uma está correta."
+        android:text="O jogo Quiz Memes, consiste em perguntas, com 3 alternativas cada e apenas uma está correta."
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
