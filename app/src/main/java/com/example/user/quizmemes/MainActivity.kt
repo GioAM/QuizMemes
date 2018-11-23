@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     fun info(view : View) {
         val intent = Intent(this, Informacao::class.java)
         startActivity(intent)
-        finish()
     }
     fun ranking(view : View) {
         val intent = Intent(this, Ranking::class.java)
