@@ -1,5 +1,6 @@
 package com.example.user.quizmemes;
 
+import android.content.res.AssetFileDescriptor;
 import android.media.Image;
 import android.media.SoundPool;
 
@@ -11,6 +12,8 @@ public class Pergunta {
     private String alternativaCorreta;
     private int imagem;
     private boolean isGif;
+    private int audio;
+
 
     public Pergunta(String descricao, String alternativaA, String alternativaB, String alternativaC, String alternativaCorreta, int imagem, boolean isGif){
         this.alternativaA = alternativaA;
@@ -19,6 +22,16 @@ public class Pergunta {
         this.alternativaCorreta = alternativaCorreta;
         this.descricao = descricao;
 
+        this.imagem =  imagem;
+        this.isGif =  isGif;
+    }
+    public Pergunta(String descricao, String alternativaA, String alternativaB, String alternativaC, String alternativaCorreta, int imagem, boolean isGif, int audio){
+        this.alternativaA = alternativaA;
+        this.alternativaB = alternativaB;
+        this.alternativaC = alternativaC;
+        this.alternativaCorreta = alternativaCorreta;
+        this.descricao = descricao;
+        this.audio = audio;
         this.imagem =  imagem;
         this.isGif =  isGif;
     }
@@ -74,5 +87,13 @@ public class Pergunta {
     public boolean isGif() { return isGif; }
 
     public void setGif(boolean gif) { isGif = gif; }
+
+    public int getAudio() {
+        return audio;
+    }
+
+    public void setAudio(int audio) {
+        this.audio = audio;
+    }
 
 }
