@@ -21,7 +21,6 @@ public class Pergunta {
         this.alternativaC = alternativaC;
         this.alternativaCorreta = alternativaCorreta;
         this.descricao = descricao;
-
         this.imagem =  imagem;
         this.isGif =  isGif;
     }
@@ -39,61 +38,45 @@ public class Pergunta {
     public int getImagem() {
         return imagem;
     }
-
     public void setImagem(int imagem) {
         this.imagem = imagem;
     }
-
     public String getAlternativaA() {
         return alternativaA;
     }
-
     public void setAlternativaA(String alternativaA) {
         this.alternativaA = alternativaA;
     }
-
     public String getAlternativaB() {
         return alternativaB;
     }
-
     public void setAlternativaB(String alternativaB) {
         this.alternativaB = alternativaB;
     }
-
     public String getAlternativaC() {
         return alternativaC;
     }
-
     public void setAlternativaC(String alternativaC) {
         this.alternativaC = alternativaC;
     }
-
     public String getAlternativaCorreta() {
         return alternativaCorreta;
     }
-
     public void setAlternativaCorreta(String alternativaCorreta) {
         this.alternativaCorreta = alternativaCorreta;
     }
-
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
     public boolean isGif() { return isGif; }
-
     public void setGif(boolean gif) { isGif = gif; }
-
     public int getAudio() {
         return audio;
     }
-
     public void setAudio(int audio) {
         this.audio = audio;
     }
-
 }

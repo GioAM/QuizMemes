@@ -28,7 +28,7 @@ class Jogo : AppCompatActivity() {
         var pagInicial = getIntent()
         nome = pagInicial.getStringExtra("nome")
         perguntas.add(Pergunta("Quem a Xuxa mandou sentar?","Letícia","Cláudia","Jandira", R.id.botao2.toString(),  resources.getIdentifier("xuxa","mipmap",packageName), false))
-        perguntas.add(Pergunta("Qual console o menino histérico ganhou?","Nintendo 64","GameBoy Advanced","Playstation 1",R.id.botao1.toString(),resources.getIdentifier("nintendo","mipmap",packageName),true))
+        perguntas.add(Pergunta("Qual console o menino histérico ganhou?","Nintendo 64","GameBoy Advanced","Playstation 1",R.id.botao1.toString(),resources.getIdentifier("nintendo","mipmap",packageName),false))
         perguntas.add(Pergunta("Como a Carla Beatriz vai ir a festa?","Um vestido, uma blusa amarrada, com a bota e o cabelo solto de prancha","Uma saia, com um croped  e o cabelo solto de prancha","Um vestido, com a blusa e o cabelo amarrados",R.id.botao1.toString(), resources.getIdentifier("vestido","mipmap",packageName),false))
         perguntas.add(Pergunta("Clique na alternativa correta?","Glória a Deux","Aleluia Irmons","Amém",R.id.botao1.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
         perguntas.add(Pergunta("Qual morro o Marco Véio estava descendo?","Morro da Vó Teresina","Morro da tia Ernestina","Morro da Vó Salvelina",R.id.botao3.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
