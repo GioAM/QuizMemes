@@ -28,18 +28,31 @@ class Jogo : AppCompatActivity() {
         var pagInicial = getIntent()
         nome = pagInicial.getStringExtra("nome")
         perguntas.add(Pergunta("Quem a Xuxa mandou sentar?","Letícia","Cláudia","Jandira", R.id.botao2.toString(),  resources.getIdentifier("xuxa","mipmap",packageName), false))
+
         perguntas.add(Pergunta("Qual console o menino histérico ganhou?","Nintendo 64","GameBoy Advanced","Playstation 1",R.id.botao1.toString(),resources.getIdentifier("nintendo","mipmap",packageName),true))
+
         perguntas.add(Pergunta("Como a Carla Beatriz vai ir a festa?","Um vestido, uma blusa amarrada, com a bota e o cabelo solto de prancha","Uma saia, com um croped  e o cabelo solto de prancha","Um vestido, com a blusa e o cabelo amarrados",R.id.botao1.toString(), resources.getIdentifier("vestido","mipmap",packageName),false))
-        perguntas.add(Pergunta("Clique na alternativa correta?","Glória a Deux","Aleluia Irmons","Amém",R.id.botao1.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
-        perguntas.add(Pergunta("Qual morro o Marco Véio estava descendo?","Morro da Vó Teresina","Morro da tia Ernestina","Morro da Vó Salvelina",R.id.botao3.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
-        perguntas.add(Pergunta("Clique na alternativa correta?","Quero Caféééé","Quero Saúdeee","Quero filééééé",R.id.botao1.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
-        perguntas.add(Pergunta("2+2","5","4","3",R.id.botao3.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
-        perguntas.add(Pergunta("Qual é a despedida mais sofrida?","Duas Pessoas que se amam","Clara e o Ovo","A mãe e o filho",R.id.botao2.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
-        perguntas.add(Pergunta("O que o aconteceu com Lazier Martins?","Abelha picou","Desmaiou","Tomou um choque",R.id.botao3.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
-        perguntas.add(Pergunta("Quem Dilma está saudando?","a mandioca","o Lula","a tapioca",R.id.botao1.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
-        perguntas.add(Pergunta("Com o que a velinha confundiu o extase?","com Rivortril","com Viagra","com Paracetamol",R.id.botao2.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
-        perguntas.add(Pergunta("Segundo o Cabo Daciolo, qual é o plano de Ciro Gomes?","Nova Ordem Mundial","Ursal","Foro de São Paulo",R.id.botao2.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
+
+        perguntas.add(Pergunta("Clique na alternativa correta?","Glória a Deux","Aleluia Irmons","Amém",R.id.botao1.toString(), resources.getIdentifier("daciolo","mipmap",packageName),false))
+
+        perguntas.add(Pergunta("Qual morro o Marco Véio estava descendo?","Morro da Vó Teresina","Morro da tia Ernestina","Morro da Vó Salvelina",R.id.botao3.toString(), resources.getIdentifier("marco","mipmap",packageName),false))
+
+        perguntas.add(Pergunta("Clique na alternativa correta?","Quero Caféééé","Quero Saúdeee","Quero filééééé",R.id.botao1.toString(), resources.getIdentifier("cafe","mipmap",packageName),false))
+
+        perguntas.add(Pergunta("2+2","5","4","3",R.id.botao3.toString(), resources.getIdentifier("acertou","mipmap",packageName),false))
+
+        perguntas.add(Pergunta("Qual é a despedida mais sofrida?","Duas Pessoas que se amam","Clara e o Ovo","A mãe e o filho",R.id.botao2.toString(), resources.getIdentifier("fernando","mipmap",packageName),false))
+
+        perguntas.add(Pergunta("O que o aconteceu com Lazier Martins?","Abelha picou","Desmaiou","Tomou um choque",R.id.botao3.toString(), resources.getIdentifier("lazier","mipmap",packageName),false))
+
+        perguntas.add(Pergunta("Quem Dilma está saudando?","a mandioca","o Lula","a tapioca",R.id.botao1.toString(), resources.getIdentifier("dilma","mipmap",packageName),false))
+
+        perguntas.add(Pergunta("Com o que a velinha confundiu o extase?","com Rivortril","com Viagra","com Paracetamol",R.id.botao2.toString(), resources.getIdentifier("velinha","mipmap",packageName),false))
+
+        perguntas.add(Pergunta("Segundo o Cabo Daciolo, qual é o plano de Ciro Gomes?","Nova Ordem Mundial","Ursal","Foro de São Paulo",R.id.botao2.toString(), resources.getIdentifier("cabodaciolo","mipmap",packageName),false))
+
         perguntas.add(Pergunta("Clique na alternativa correta?","Ta pegando fogo no lixo","Ta pegando fogo nisso","Ta pegando fogo bicho",R.id.botao3.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
+
         montarPergunta()
     }
     fun jogar(view : View){
