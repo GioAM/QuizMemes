@@ -1,27 +1,24 @@
 package com.example.user.quizmemes
 
-import android.annotation.TargetApi
 import android.content.Intent
-import android.media.AudioAttributes
-import android.media.AudioManager
-import android.media.SoundPool
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import pl.droidsonroids.gif.GifImageView
-import pl.droidsonroids.gif.InputSource
-import java.io.IOException
 
 class Jogo : AppCompatActivity() {
 
     var perguntas :  ArrayList<Pergunta> = ArrayList<Pergunta>()
     var perguntaAtual = 0
-    var som : SoundPool = criarObjetoDeSom();
+
     var vidas:Int = 3
+
+
     var nome = ""
-    val gerenciadorDeAssets = assets
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +26,9 @@ class Jogo : AppCompatActivity() {
         perguntaAtual=0
         setContentView(R.layout.activity_jogo)
         var pagInicial = getIntent()
-        setVolumeControlStream(AudioManager.STREAM_MUSIC)
         nome = pagInicial.getStringExtra("nome")
-        perguntas.add(Pergunta("Quem a Xuxa mandou sentar?","Letícia","Cláudia","Jandira", R.id.botao2.toString(),  resources.getIdentifier("xuxa","mipmap",packageName), false,som.load(gerenciadorDeAssets.openFd("explosion.ogg"),1)))
-        perguntas.add(Pergunta("Qual console o menino histérico ganhou?","Nintendo 64","GameBoy Advanced","Playstation 1",R.id.botao1.toString(),resources.getIdentifier("nintendo","mipmap",packageName),true,som.load(gerenciadorDeAssets.openFd("Aham-Claudia-Senta-La.mp3"),1)))
+        perguntas.add(Pergunta("Quem a Xuxa mandou sentar?","Letícia","Cláudia","Jandira", R.id.botao2.toString(),  resources.getIdentifier("xuxa","mipmap",packageName), false))
+        perguntas.add(Pergunta("Qual console o menino histérico ganhou?","Nintendo 64","GameBoy Advanced","Playstation 1",R.id.botao1.toString(),resources.getIdentifier("nintendo","mipmap",packageName),true))
         perguntas.add(Pergunta("Como a Carla Beatriz vai ir a festa?","Um vestido, uma blusa amarrada, com a bota e o cabelo solto de prancha","Uma saia, com um croped  e o cabelo solto de prancha","Um vestido, com a blusa e o cabelo amarrados",R.id.botao1.toString(), resources.getIdentifier("vestido","mipmap",packageName),false))
         perguntas.add(Pergunta("Clique na alternativa correta?","Glória a Deux","Aleluia Irmons","Amém",R.id.botao1.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
         perguntas.add(Pergunta("Qual morro o Marco Véio estava descendo?","Morro da Vó Teresina","Morro da tia Ernestina","Morro da Vó Salvelina",R.id.botao3.toString(), resources.getIdentifier("faustao","mipmap",packageName),false))
@@ -55,10 +51,8 @@ class Jogo : AppCompatActivity() {
                 finish()
                 return
             }
-            som.play(perguntas[perguntaAtual].audio, 1f, 1f, 0, 0, 1f)
             perguntaAtual ++
         }else{
-            som.play(audioErro(), 1f, 1f, 0, 0, 1f)
             vidas --
             if(vidas == 2){
                 findViewById<ImageView>(R.id.hearth3).setImageResource(resources.getIdentifier(" ","mipmap",packageName))
@@ -91,27 +85,5 @@ class Jogo : AppCompatActivity() {
             findViewById<ImageButton>(R.id.imagem).setVisibility(View.INVISIBLE)
             findViewById<GifImageView>(R.id.gif).setVisibility(View.VISIBLE)
         }
-    }
-    fun criarObjetoDeSom() : SoundPool {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return criarObjetoDeSomNovaVersao()
-        }
-
-        return criarObjetoDeSomVersaoVelha()
-    }
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    fun criarObjetoDeSomNovaVersao() : SoundPool {
-        val atributos = AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build();
-
-        som = SoundPool.Builder().setAudioAttributes(atributos).build();
-
-        return som;
-    }
-    fun criarObjetoDeSomVersaoVelha () : SoundPool {
-        return SoundPool(5, AudioManager.STREAM_MUSIC, 0)
-    }
-    fun audioErro():Int{
-        var number = perguntas.size % 4
-        return som.load(gerenciadorDeAssets.openFd("erro$number.mp3"),1)
     }
 }
