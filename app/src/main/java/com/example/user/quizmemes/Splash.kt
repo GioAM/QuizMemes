@@ -13,15 +13,8 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
-
-        var progresso =
-                findViewById<ProgressBar>(
-                        R.id.barraProgresso
-                )
-
-        Thread(Runnable {
-            carregar(progresso)
-        }).start()
+        var progresso = findViewById<ProgressBar>(R.id.barraProgresso)
+        Thread(Runnable { carregar(progresso) }).start()
     }
 
     fun carregar(barraProgresso : ProgressBar) {
@@ -37,10 +30,7 @@ class Splash : AppCompatActivity() {
             progresso += 10
         }
 
-        val intent = Intent(
-                this,
-                MainActivity::class.java
-        )
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

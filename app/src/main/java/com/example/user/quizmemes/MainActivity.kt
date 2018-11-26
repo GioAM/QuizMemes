@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(pagInicial)
         finish()
     }
-
     fun info(view : View) {
         val intent = Intent(this, Informacao::class.java)
         startActivity(intent)

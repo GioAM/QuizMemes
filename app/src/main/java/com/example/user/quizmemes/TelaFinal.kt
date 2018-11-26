@@ -24,7 +24,6 @@ class TelaFinal : AppCompatActivity() {
             findViewById<TextView>(R.id.result).setText("'Não acho que quem ganhar ou quem perder, nem quem ganhar nem perder, vai ganhar ou perder. Vai todo mundo perder.'")
         }
     }
-
     fun novoJogo(view: View){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
