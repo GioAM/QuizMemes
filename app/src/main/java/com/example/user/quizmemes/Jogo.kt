@@ -65,6 +65,11 @@ class Jogo : AppCompatActivity() {
                 finish()
                 return
             }
+            Timer().schedule(object : TimerTask() {
+                override fun run() {
+                    montarPergunta()
+                }
+            }, perguntas[perguntaAtual].tempo.toLong())
             perguntaAtual ++
         }else{
             vidas --
@@ -81,13 +86,8 @@ class Jogo : AppCompatActivity() {
                 startActivity(telaFinal)
                 finish()
             }
+            montarPergunta()
         }
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                montarPergunta()
-            }
-        }, perguntas[perguntaAtual-1].tempo.toLong())
-
     }
     fun montarPergunta(){
         findViewById<Button>(R.id.botao1).setText(perguntas[perguntaAtual].alternativaA)
