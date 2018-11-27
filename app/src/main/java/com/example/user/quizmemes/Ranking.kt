@@ -31,7 +31,7 @@ class Ranking : AppCompatActivity() {
 
         var linhas = banco.rawQuery("""
             SELECT id, nome, pontuacao
-            FROM jogo
+            FROM jogo ORDER BY pontuacao
         """, null)
 
         while (linhas.moveToNext()) {
