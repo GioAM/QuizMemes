@@ -1,5 +1,6 @@
 package com.example.user.quizmemes
 
+import android.content.Context
 import android.content.Intent
 import android.media.session.MediaController
 import android.support.v7.app.AppCompatActivity
@@ -15,6 +16,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
+        var banco = openOrCreateDatabase("QuizMemes", Context.MODE_PRIVATE, null)
+        banco.execSQL(
+                """CREATE TABLE IF NOT EXISTS jogo
+                 (
+                    id  INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nome VARCHAR(254),
+                    pontuacao INTEGER
+                 );"""
+        )
+        banco.close()
     }
     fun jogar(view : View) {
         val pagInicial = Intent(this, Jogo::class.java)
