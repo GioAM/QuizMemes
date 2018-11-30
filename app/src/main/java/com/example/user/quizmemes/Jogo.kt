@@ -48,7 +48,7 @@ class Jogo : AppCompatActivity() {
         perguntas.add(Pergunta("Quem Dilma está saudando?","a mandioca","o Lula","a tapioca",R.id.botao1.toString(), resources.getIdentifier("dilma","mipmap",packageName),som.load(gerenciadorDeAssets.openFd("mandioca.mp3"),1),4000))
         perguntas.add(Pergunta("Com o que a velinha confundiu o extase?","com Rivortril","com Viagra","com Paracetamol",R.id.botao2.toString(), resources.getIdentifier("velinha","mipmap",packageName)))
         perguntas.add(Pergunta("Segundo o Cabo Daciolo, qual é o plano de Ciro Gomes?","Nova Ordem Mundial","Ursal","Foro de São Paulo",R.id.botao2.toString(), resources.getIdentifier("cabodaciolo","mipmap",packageName)))
-        perguntas.add(Pergunta("","Ta pegando fogo no lixo","Ta pegando fogo nisso","Ta pegando fogo bicho",R.id.botao3.toString(), resources.getIdentifier("faustao","mipmap",packageName),som.load(gerenciadorDeAssets.openFd("fogo.mp3"),1),4000))
+        perguntas.add(Pergunta("","Ta pegando fogo no lixo","Ta pegando fogo nisso","Ta pegando fogo bicho",R.id.botao3.toString(), resources.getIdentifier("faustao","mipmap",packageName),som.load(gerenciadorDeAssets.openFd("fogo.mp3"),1),5000))
         var img = findViewById<ImageButton>(R.id.imagem)
         montarPergunta(img)
         idErro1 = som.load(gerenciadorDeAssets.openFd("erro1.mp3"),1);
@@ -60,10 +60,13 @@ class Jogo : AppCompatActivity() {
         if(view.id.toString().equals(perguntas[perguntaAtual].alternativaCorreta)){
             som.play(perguntas[perguntaAtual].audio,1f, 1f, 0, 0, 1f)
             if(perguntaAtual+1 == perguntas.size){
-                rodarSql()
-                telaFinal.putExtra("resultado","ganhou")
-                startActivity(telaFinal)
-                finish()
+
+                Timer().schedule(object : TimerTask() {
+                    override fun run() {
+                        perguntaFinal(telaFinal)
+                    }
+                }, perguntas[perguntaAtual].tempo.toLong())
+
                 return
             }
             findViewById<Button>(R.id.botao1).setText(perguntas[perguntaAtual].alternativaA)
@@ -96,6 +99,16 @@ class Jogo : AppCompatActivity() {
             montarPergunta(img)
         }
     }
+
+    fun perguntaFinal(telaFinal:Intent) {
+        runOnUiThread {
+            rodarSql()
+            telaFinal.putExtra("resultado","ganhou")
+            startActivity(telaFinal)
+            finish()
+        }
+    }
+
     fun montarPergunta(img : ImageButton){
         runOnUiThread {
             findViewById<Button>(R.id.botao1).setText(perguntas[perguntaAtual].alternativaA)
