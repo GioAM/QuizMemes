@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Size
 import android.view.Gravity
 import android.view.View
 import android.widget.TableLayout
@@ -30,26 +31,25 @@ class Ranking : AppCompatActivity() {
         pontuacao.removeAllViews()
 
         var linhas = banco.rawQuery("""
-            SELECT id, nome, pontuacao
-            FROM jogo ORDER BY pontuacao
+            SELECT nome, pontuacao
+            FROM jogo ORDER BY pontuacao DESC
         """, null)
 
         while (linhas.moveToNext()) {
             var linha = TableRow(this)
 
-            val id = TextView(this)
             val nome = TextView(this)
             val pontos = TextView(this)
 
-            id.gravity = Gravity.CENTER
             nome.gravity = Gravity.CENTER
             pontos.gravity = Gravity.CENTER
 
-            id.text = linhas.getString(0)
-            nome.text = linhas.getString(1)
-            pontos.text = linhas.getString(2)
+            nome.textSize = 20.0.toFloat()
+            pontos.textSize = 20.0.toFloat()
 
-            linha.addView(id)
+            nome.text = linhas.getString(0)
+            pontos.text = linhas.getString(1)
+
             linha.addView(nome)
             linha.addView(pontos)
 
