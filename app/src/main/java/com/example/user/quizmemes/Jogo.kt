@@ -49,7 +49,8 @@ class Jogo : AppCompatActivity() {
         perguntas.add(Pergunta("Com o que a velinha confundiu o extase?","com Rivortril","com Viagra","com Paracetamol",R.id.botao2.toString(), resources.getIdentifier("velinha","mipmap",packageName)))
         perguntas.add(Pergunta("Segundo o Cabo Daciolo, qual é o plano de Ciro Gomes?","Nova Ordem Mundial","Ursal","Foro de São Paulo",R.id.botao2.toString(), resources.getIdentifier("cabodaciolo","mipmap",packageName)))
         perguntas.add(Pergunta("","Ta pegando fogo no lixo","Ta pegando fogo nisso","Ta pegando fogo bicho",R.id.botao3.toString(), resources.getIdentifier("faustao","mipmap",packageName),som.load(gerenciadorDeAssets.openFd("fogo.mp3"),1),4000))
-        montarPergunta()
+        var img = findViewById<ImageButton>(R.id.imagem)
+        montarPergunta(img)
         idErro1 = som.load(gerenciadorDeAssets.openFd("erro1.mp3"),1);
         idErro2 = som.load(gerenciadorDeAssets.openFd("erro2.mp3"),1);
         idErro3 = som.load(gerenciadorDeAssets.openFd("erro3.mp3"),1);
@@ -65,9 +66,14 @@ class Jogo : AppCompatActivity() {
                 finish()
                 return
             }
+            findViewById<Button>(R.id.botao1).setText(perguntas[perguntaAtual].alternativaA)
+            findViewById<Button>(R.id.botao2).setText(perguntas[perguntaAtual].alternativaB)
+            findViewById<Button>(R.id.botao3).setText(perguntas[perguntaAtual].alternativaC)
+            findViewById<TextView>(R.id.descricao).setText(perguntas[perguntaAtual].descricao)
+            var img = findViewById<ImageButton>(R.id.imagem)
             Timer().schedule(object : TimerTask() {
                 override fun run() {
-                    montarPergunta()
+                    montarPergunta(img)
                 }
             }, perguntas[perguntaAtual].tempo.toLong())
             perguntaAtual ++
@@ -86,15 +92,19 @@ class Jogo : AppCompatActivity() {
                 startActivity(telaFinal)
                 finish()
             }
-            montarPergunta()
+            var img = findViewById<ImageButton>(R.id.imagem)
+            montarPergunta(img)
         }
     }
-    fun montarPergunta(){
-        findViewById<Button>(R.id.botao1).setText(perguntas[perguntaAtual].alternativaA)
-        findViewById<Button>(R.id.botao2).setText(perguntas[perguntaAtual].alternativaB)
-        findViewById<Button>(R.id.botao3).setText(perguntas[perguntaAtual].alternativaC)
-        findViewById<TextView>(R.id.descricao).setText(perguntas[perguntaAtual].descricao)
-        findViewById<ImageButton>(R.id.imagem).setImageResource(perguntas[perguntaAtual].imagem)
+    fun montarPergunta(img : ImageButton){
+        runOnUiThread {
+            findViewById<Button>(R.id.botao1).setText(perguntas[perguntaAtual].alternativaA)
+            findViewById<Button>(R.id.botao2).setText(perguntas[perguntaAtual].alternativaB)
+            findViewById<Button>(R.id.botao3).setText(perguntas[perguntaAtual].alternativaC)
+            findViewById<TextView>(R.id.descricao).setText(perguntas[perguntaAtual].descricao)
+            findViewById<ImageButton>(R.id.imagem).setImageResource(perguntas[perguntaAtual].imagem)
+        }
+
     }
     fun criarObjetoDeSom() : SoundPool {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
